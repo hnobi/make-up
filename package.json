@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon  --exec babel-node server/app.js",
-    "start:dev": "npm run build && node --require dotenv/config ./dist/app.js",
+    "dev": "nodemon  --exec babel-node server/app.js",
+    "start": "npm run build && node --require dotenv/config ./dist/app.js",
     "seed": "babel-node server/seeders/seed.js",
     "build": "rimraf dist/ && babel server/ --out-dir dist"
   },
