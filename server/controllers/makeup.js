@@ -19,7 +19,7 @@ export default class Phones {
 
     if (!totalPages) totalPages = 1;
 
-    let obj = {}
+    let obj = { category: { $ne: null } }
     if (product_category){
       obj = { category: product_category }
     }
