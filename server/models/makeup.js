@@ -26,7 +26,7 @@ const MakeupSchema = new Schema(
       type: String,
     },
 
-    currency: {
+    name: {
       type: String,
     },
 
@@ -75,9 +75,8 @@ const MakeupSchema = new Schema(
       type: [String]
     },
 
-    product_colors: {
-      type: [{ hex_value: String, colour_name: String }]
-    }
+    product_colors: [{ hex_value: String, colour_name: String }]
+    
   },
   {
     timestamps: true,

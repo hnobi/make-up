@@ -12,30 +12,37 @@ export default class Phones {
    * @memberof Phones
    */
   static async getRequests(req, res) {
-    const { page, limit, product_category } = req.query;
-
+    const { product_category, page, limit } = req.query;
     const total = await Makeup.countDocuments();
+    const skip = (page - 1) * limit;
     let totalPages = Math.ceil(total / limit);
 
     if (!totalPages) totalPages = 1;
-    const skip = (page - 1) * limit;
-    let obj = {};
-    let sortingBy = { id: 1 };
-    if (product_category) {
-      obj = { $text: { $search: product_category } };
-      sortingBy = { score: { $meta: "textScore" } };
-    }
-    
 
-    const result = await Makeup.find()
-      .sort(sortingBy)
+    let obj = {}
+    if (product_category){
+      obj = { category: product_category }
+    }
+
+    const result = await Makeup.find(obj)
+      .sort({ id: 'asc' })
       .skip(skip)
       .limit(Number(limit));
-    return res.json({
+    return res.send({
       total,
-      totalPages,
-      limit,
       page,
-    });
+      limit,
+      totalPages,
+      result
+    })
+}
+
+  static async getSingleRequests(req, res) {
+    const result = await Makeup.find({id: req.params.id})
+    return res.send({
+      result
+    })
+
   }
+
 }

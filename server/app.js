@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(cors())
 app.get('/', (req, res)=>{
-  res.send({message: 'welcome phone'})
+  res.send({message: 'welcome makeup'})
 })
 
 app.use('/api', routes);
