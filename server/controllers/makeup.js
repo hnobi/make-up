@@ -13,26 +13,26 @@ export default class Phones {
    */
   static async getRequests(req, res) {
     const { product_category, page, limit } = req.query;
-    const total = await Makeup.countDocuments();
-    const skip = (page - 1) * limit;
-    let totalPages = Math.ceil(total / limit);
+    // const total = await Makeup.countDocuments();
+    // const skip = (page - 1) * limit;
+    // let totalPages = Math.ceil(total / limit);
 
-    if (!totalPages) totalPages = 1;
+    // if (!totalPages) totalPages = 1;
 
     let obj = { category: { $ne: null } }
-    if (product_category){
-      obj = { category: product_category }
-    }
+    // if (product_category){
+    //   obj = { category: product_category }
+    // }
 
     const result = await Makeup.find(obj)
-      .sort({ id: 'asc' })
-      .skip(skip)
-      .limit(Number(limit));
+    //   .sort({ id: 'asc' })
+    //   .skip(skip)
+    //   .limit(Number(limit));
     return res.send({
-      total,
-      page,
-      limit,
-      totalPages,
+      // total,
+      // page,
+      // limit,
+      // totalPages,
       result
     })
 }
